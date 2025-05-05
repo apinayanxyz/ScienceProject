@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class ScoreViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+        value = "This is Score Fragment"
     }
     val text: LiveData<String> = _text
 }

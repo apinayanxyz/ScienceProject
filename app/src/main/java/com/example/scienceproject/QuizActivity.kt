@@ -12,6 +12,7 @@ class QuizActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_quiz)
         supportActionBar?.hide();
+
         val extras = intent.extras;
         if (extras != null) {
             val value = extras . getString ("testType");

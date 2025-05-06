@@ -1,21 +1,17 @@
-package com.example.scienceproject
+package com.example.scienceproject.questionProcess
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.scienceproject.R
 
-class QuizActivity : AppCompatActivity() {
+class FillInQuestionsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_quiz)
-        supportActionBar?.hide();
-        val extras = intent.extras;
-        if (extras != null) {
-            val value = extras . getString ("testType");
-        }
+        setContentView(R.layout.activity_fill_in_questions)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)

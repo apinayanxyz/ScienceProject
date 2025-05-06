@@ -58,7 +58,7 @@
                         android:text="testPlacehoilder" />
 
                     <Button
-                        android:id="@+id/button11"
+                        android:id="@+id/chemistryQuizButton"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
                         android:layout_marginStart="5dp"
@@ -72,7 +72,7 @@
                         app:layout_constraintVertical_bias="0.0" />
 
                     <Button
-                        android:id="@+id/button12"
+                        android:id="@+id/allQuizButton"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
                         android:layout_marginStart="5dp"
@@ -83,10 +83,10 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/button11" />
+                        app:layout_constraintTop_toBottomOf="@+id/chemistryQuizButton" />
 
                     <Button
-                        android:id="@+id/button13"
+                        android:id="@+id/biologyQuizButton"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
                         android:layout_marginStart="15dp"
@@ -95,25 +95,25 @@
                         android:layout_marginBottom="20dp"
                         android:text="Button"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/button12"
+                        app:layout_constraintEnd_toStartOf="@+id/allQuizButton"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/button14"
+                        app:layout_constraintTop_toBottomOf="@+id/physicsQuizButton"
                         app:layout_constraintVertical_bias="0.0" />
 
                     <Button
-                        android:id="@+id/button14"
+                        android:id="@+id/physicsQuizButton"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="15dp"
                         android:text="Button"
-                        app:layout_constraintEnd_toStartOf="@+id/button11"
+                        app:layout_constraintEnd_toStartOf="@+id/chemistryQuizButton"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
                     <Button
-                        android:id="@+id/button15"
+                        android:id="@+id/randomQuizButton"
                         android:layout_width="90dp"
                         android:layout_height="125dp"
                         android:layout_marginStart="15dp"
@@ -123,7 +123,7 @@
                         android:text="Button"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/button11"
+                        app:layout_constraintStart_toEndOf="@+id/chemistryQuizButton"
                         app:layout_constraintTop_toBottomOf="@+id/textView2"
                         app:layout_constraintVertical_bias="0.0" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -152,7 +152,7 @@
                         android:text="examPlaceholder" />
 
                     <Button
-                        android:id="@+id/button6"
+                        android:id="@+id/chemistryTestButton"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
                         android:layout_marginStart="5dp"
@@ -164,7 +164,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
                     <Button
-                        android:id="@+id/button7"
+                        android:id="@+id/physicsTestButton"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
                         android:layout_marginStart="15dp"
@@ -172,13 +172,13 @@
                         android:layout_marginEnd="15dp"
                         android:text="Button"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/button6"
+                        app:layout_constraintEnd_toStartOf="@+id/chemistryTestButton"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView"
                         app:layout_constraintVertical_bias="0.0" />
 
                     <Button
-                        android:id="@+id/button8"
+                        android:id="@+id/randomTestButton"
                         android:layout_width="90dp"
                         android:layout_height="125dp"
                         android:layout_marginStart="15dp"
@@ -188,12 +188,12 @@
                         android:text="Button"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/button6"
+                        app:layout_constraintStart_toEndOf="@+id/chemistryTestButton"
                         app:layout_constraintTop_toBottomOf="@+id/textView"
                         app:layout_constraintVertical_bias="0.0" />
 
                     <Button
-                        android:id="@+id/button9"
+                        android:id="@+id/allTestButton"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
                         android:layout_marginStart="5dp"
@@ -204,11 +204,11 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/button6"
+                        app:layout_constraintTop_toBottomOf="@+id/chemistryTestButton"
                         app:layout_constraintVertical_bias="0.0" />
 
                     <Button
-                        android:id="@+id/button10"
+                        android:id="@+id/biologyTestButton"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
                         android:layout_marginStart="15dp"
@@ -217,9 +217,9 @@
                         android:layout_marginBottom="20dp"
                         android:text="Button"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/button9"
+                        app:layout_constraintEnd_toStartOf="@+id/allTestButton"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/button7"
+                        app:layout_constraintTop_toBottomOf="@+id/physicsTestButton"
                         app:layout_constraintVertical_bias="0.0" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

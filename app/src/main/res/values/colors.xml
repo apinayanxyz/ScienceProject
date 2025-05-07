@@ -8,5 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="baseGreen">#98FB98</color>
-    <color name="physicsColor">#FF45F2F8</color>
+    <color name="physicsColor">#000080</color>
+    <color name="biologyColor">#4a6741</color>
+    <color name="chemistryGreen">#99f859</color>
+    <color name="chemistryTextColor">#7459f8</color>
+
+    <color name="all">#740112</color>
+    <color name="allText">#EE4B2B</color>
 </resources>

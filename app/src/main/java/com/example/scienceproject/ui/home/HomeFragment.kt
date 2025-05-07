@@ -15,6 +15,7 @@ import com.example.scienceproject.QuizActivity
 import com.example.scienceproject.R
 import com.example.scienceproject.TestActivity
 import com.example.scienceproject.databinding.FragmentHomeBinding
+import kotlin.random.Random
 
 class HomeFragment : Fragment() {
 
@@ -40,6 +41,7 @@ class HomeFragment : Fragment() {
 
 
         var physicsQuizButton = view.findViewById<Button>(R.id.physicsQuizButton)
+        physicsQuizButton.setText("Physics")
         var biologyQuizButton = view.findViewById<Button>(R.id.biologyQuizButton)
         var chemistyQuizButton = view.findViewById<Button>(R.id.chemistryQuizButton)
         var allQuizButton = view.findViewById<Button>(R.id.allQuizButton)
@@ -72,7 +74,8 @@ class HomeFragment : Fragment() {
             startActivity(quizIntent)
         }
         randomQuizButton.setOnClickListener {
-            quizIntent.putExtra("testType",4)
+            val randomChoice = List(1){Random.nextInt(0,3)}
+            quizIntent.putExtra("testType", randomChoice[0])
             startActivity(quizIntent)
         }
 
@@ -93,7 +96,8 @@ class HomeFragment : Fragment() {
             startActivity(testIntent)
         }
         randomTestButton.setOnClickListener {
-            testIntent.putExtra("testType",4)
+            val randomChoice = List(1){Random.nextInt(0,3)}
+            testIntent.putExtra("testType", randomChoice[0])
             startActivity(testIntent)
         }
 

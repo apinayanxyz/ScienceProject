@@ -53,13 +53,13 @@ class QuestionsActivity : AppCompatActivity() {
 
         object : CountDownTimer (timeRemaining!!,1000){
             override fun onTick(millisUntilFinished: Long) {
-                timerText.setText(""+(millisUntilFinished / 1000)/60 +":"+(millisUntilFinished / 1000)%60)
+                timerText.text = ""+(millisUntilFinished / 1000)/60 +":"+(millisUntilFinished / 1000)%60
             }
 
             // Callback function, fired
             // when the time is up
             override fun onFinish() {
-                timerText.setText("done!")
+                timerText.text = "done!"
             }
         }.start()
     }

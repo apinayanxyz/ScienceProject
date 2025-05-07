@@ -1,6 +1,7 @@
 package com.example.scienceproject
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -19,6 +20,7 @@ import androidx.core.graphics.drawable.toDrawable
 import androidx.core.graphics.toColor
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.scienceproject.questionProcess.QuestionsActivity
 
 class QuizActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId", "ResourceAsColor")
@@ -42,6 +44,34 @@ class QuizActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+        var startButton = findViewById<Button>(R.id.quizStartButton)
+        startButton.setOnClickListener{
+            var questionNumber=when(questionNoPosition){
+                0-> 5
+                1-> 10
+                2-> 15
+                3-> 20
+                4-> 25
+                5-> 30
+                else -> 10
+            }
+            var timeAmount:Long? =null
+            timeAmount =when(timePosition){
+                0->50000
+                1->100000
+                2->150000
+                3->200000
+                4->300000
+                5->450000
+                else->50000
+            }
+            val questionIntent = Intent(this,QuestionsActivity::class.java)
+            questionIntent.putExtra("timeLimit",timeAmount)
+            questionIntent.putExtra("maxQuestions",questionNumber)
+            questionIntent.putExtra("subject",value)
+            startActivity(questionIntent)
+
         }
     }
 
@@ -86,8 +116,6 @@ class QuizActivity : AppCompatActivity() {
                         // write code to perform some action
                     }
             }
-
-
         }
     }
 

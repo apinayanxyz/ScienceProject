@@ -45,6 +45,50 @@ class QuizActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        //Grab from spinner for question amount
+        val questionSpinner = findViewById<Spinner>(R.id.questionSpinner)
+        if (questionSpinner != null){
+            val adapter = ArrayAdapter(this,
+                android.R.layout.simple_spinner_item,resources.getStringArray(R.array.questions_array))
+            questionSpinner.adapter = adapter
+
+            questionSpinner.onItemSelectedListener = object :
+                AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>,
+                                            view: View, position: Int, id: Long) {
+                    questionNoPosition = position
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    // write code to perform some action
+                }
+            }
+        }
+
+        //Grab from spinner for time
+        val timeSpinner = findViewById<Spinner>(R.id.timeSpinner)
+        if (timeSpinner != null){
+            val adapter = ArrayAdapter(this,
+                android.R.layout.simple_spinner_item,resources.getStringArray(R.array.time_array))
+            timeSpinner.adapter = adapter
+
+            timeSpinner.onItemSelectedListener = object :
+                AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>,
+                                            view: View, position: Int, id: Long) {
+                    timePosition = position
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    // write code to perform some action
+                }
+            }
+
+
+        }
+
+        //Button Click
         var startButton = findViewById<Button>(R.id.quizStartButton)
         startButton.setOnClickListener{
             var questionNumber=when(questionNoPosition){
@@ -57,18 +101,21 @@ class QuizActivity : AppCompatActivity() {
                 else -> 10
             }
             var timeAmount:Long? =null
+            println(timePosition)
             timeAmount =when(timePosition){
-                0->50000
-                1->100000
-                2->150000
-                3->200000
-                4->300000
-                5->450000
-                else->50000
+                0->5 * 60000
+                1->10 * 60000
+                2->15 * 60000
+                3->20 * 60000
+                4->30 * 60000
+                5->45 * 60000
+                else->50 * 60000
             }
             val questionIntent = Intent(this,QuestionsActivity::class.java)
             questionIntent.putExtra("timeLimit",timeAmount)
             questionIntent.putExtra("maxQuestions",questionNumber)
+            questionIntent.putExtra("questionNumber",0)
+            questionIntent.putExtra("score",0)
             questionIntent.putExtra("subject",value)
             startActivity(questionIntent)
 
@@ -97,49 +144,6 @@ class QuizActivity : AppCompatActivity() {
             timeSpinner.adapter = adapter
         }
 
-    }
-    public fun itemSelectionQuestion(){
-        val questionSpinner = findViewById<Spinner>(R.id.questionSpinner)
-        if (questionSpinner != null){
-            val adapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_item,resources.getStringArray(R.array.questions_array))
-            questionSpinner.adapter = adapter
-
-            questionSpinner.onItemSelectedListener = object :
-                AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(parent: AdapterView<*>,
-                                                view: View, position: Int, id: Long) {
-                        questionNoPosition = position
-                    }
-
-                    override fun onNothingSelected(parent: AdapterView<*>) {
-                        // write code to perform some action
-                    }
-            }
-        }
-    }
-
-    public fun itemSelectionTime(){
-        val timeSpinner = findViewById<Spinner>(R.id.timeSpinner)
-        if (timeSpinner != null){
-            val adapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_item,resources.getStringArray(R.array.time_array))
-            timeSpinner.adapter = adapter
-
-            timeSpinner.onItemSelectedListener = object :
-                AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>,
-                                            view: View, position: Int, id: Long) {
-                    timePosition = position
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    // write code to perform some action
-                }
-            }
-
-
-        }
     }
 
     private fun dynamicPage(value:Int){

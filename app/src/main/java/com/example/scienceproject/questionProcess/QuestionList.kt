@@ -1,8 +1,8 @@
 package com.example.scienceproject.questionProcess
 
-class QuestionList {
+import java.io.Serializable
 
-
+class QuestionList :Serializable{
         /*Question Type
         * 0 is multiple choice
         * */
@@ -42,7 +42,23 @@ class QuestionList {
     fun shuffleList(): List<Questions> {
         return questionList.shuffled()
     }
+    fun getSubjectQuestions(questionSubject: Int):List<Questions> {
+        when(questionSubject){
+            1 or 2 or 3->{createSubList(questionSubject)}
+            else->{questionList=questionList}
+        }
+        return questionList
+    }
 
+    private fun createSubList(questionSubject: Int):List<Questions> {
+        var subList = mutableListOf<Questions>()
+        for (i in questionList){
+            if (i.questionSubject==questionSubject){
+                subList.add(i)
+            }
+        }
+        return subList
+    }
     fun createQuestions(numberOfQuestions: Int):List<Questions>{
         var smallerQuestionList = mutableListOf<Questions>()
         for (i in 0..numberOfQuestions){

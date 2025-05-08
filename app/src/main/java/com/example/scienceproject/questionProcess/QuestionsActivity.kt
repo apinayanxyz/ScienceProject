@@ -20,7 +20,8 @@ class QuestionsActivity : AppCompatActivity() {
     private var timeRemaining:Long? = null
     private var subject:Int? = null
     private var score:Int? = null
-    private val answered:Boolean? = null
+    private var answered:Boolean? = null
+    private var questionList:QuestionList? = null
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +50,7 @@ class QuestionsActivity : AppCompatActivity() {
             timeRemaining = extras.getLong("timeLimit")
             subject = extras.getInt("subject")
             score = extras.getInt("score")
+            questionList = extras.getSerializable("questionList") as? QuestionList
         }
 
         object : CountDownTimer (timeRemaining!!,1000){

@@ -1,8 +1,9 @@
 package com.example.scienceproject.questionProcess
 
+import java.io.Serializable
 import javax.security.auth.Subject
 
-class Questions(id:Int,subject: Int,question:String,correctAnswer:Int,answer1:String,answer2:String,answer3:String,answer4:String,questionType:Int,questionHint:String) {
+class Questions(id:Int,subject: Int,question:String,correctAnswer:Int,answer1:String,answer2:String,answer3:String,answer4:String,questionType:Int,questionHint:String) :Serializable {
     var questionId : Int? = id
     var questionSubject: Int? = subject
     var question : String? = question

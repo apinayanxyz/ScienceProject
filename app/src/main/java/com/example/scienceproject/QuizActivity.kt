@@ -20,6 +20,8 @@ import androidx.core.graphics.drawable.toDrawable
 import androidx.core.graphics.toColor
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.scienceproject.questionProcess.QuestionList
+import com.example.scienceproject.questionProcess.Questions
 import com.example.scienceproject.questionProcess.QuestionsActivity
 
 class QuizActivity : AppCompatActivity() {
@@ -90,7 +92,9 @@ class QuizActivity : AppCompatActivity() {
 
         //Button Click
         var startButton = findViewById<Button>(R.id.quizStartButton)
+
         startButton.setOnClickListener{
+            //Grabs number of questions
             var questionNumber=when(questionNoPosition){
                 0-> 5
                 1-> 10
@@ -100,6 +104,7 @@ class QuizActivity : AppCompatActivity() {
                 5-> 30
                 else -> 10
             }
+            //Grabs amount of time for quiz
             var timeAmount:Long? =null
             println(timePosition)
             timeAmount =when(timePosition){
@@ -111,12 +116,16 @@ class QuizActivity : AppCompatActivity() {
                 5->45 * 60000
                 else->50 * 60000
             }
+            var questionList= QuestionList()
+            questionList.questionList = questionList.createQuestions(questionNumber)
+            //Items to send to next activity
             val questionIntent = Intent(this,QuestionsActivity::class.java)
             questionIntent.putExtra("timeLimit",timeAmount)
             questionIntent.putExtra("maxQuestions",questionNumber)
             questionIntent.putExtra("questionNumber",0)
             questionIntent.putExtra("score",0)
             questionIntent.putExtra("subject",value)
+            questionIntent.putExtra("questionList",questionList)
             startActivity(questionIntent)
 
         }

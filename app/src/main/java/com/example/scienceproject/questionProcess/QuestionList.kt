@@ -61,7 +61,7 @@ class QuestionList :Serializable{
     }
     fun createQuestions(numberOfQuestions: Int):List<Questions>{
         var smallerQuestionList = mutableListOf<Questions>()
-        for (i in 0..numberOfQuestions){
+        for (i in 0..<numberOfQuestions){
             smallerQuestionList.add(i,questionList[i])
         }
         return smallerQuestionList

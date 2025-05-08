@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.scienceproject.R
@@ -21,7 +23,8 @@ class QuestionsActivity : AppCompatActivity() {
     private var subject:Int? = null
     private var score:Int? = null
     private var answered:Boolean? = null
-    private var questionList:QuestionList? = null
+    private var questionListCreator:QuestionList? = null
+    private var questionList:List<Questions>? = null
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +46,8 @@ class QuestionsActivity : AppCompatActivity() {
         val questionText = findViewById<TextView>(R.id.questionLabel)
         var nextButton = findViewById<TextView>(R.id.nextButton)
 
+        var layout = findViewById<FrameLayout>(R.id.backgroundLayout)
+
         val extras = intent.extras;
         if (extras != null) {
             questionNumber = extras.getInt("questionNumber")
@@ -50,7 +55,13 @@ class QuestionsActivity : AppCompatActivity() {
             timeRemaining = extras.getLong("timeLimit")
             subject = extras.getInt("subject")
             score = extras.getInt("score")
-            questionList = extras.getSerializable("questionList") as? QuestionList
+            questionListCreator = extras.getSerializable("questionList") as? QuestionList
+            questionList = questionListCreator?.questionList
+            when(questionList?.get(questionNumber!!)?.questionSubject){
+                1->layout.background = resources.getColor(R.color.physicsColor).toDrawable()
+                2->layout.background = resources.getColor(R.color.biologyColor).toDrawable()
+                3->layout.background = resources.getColor(R.color.chemistryGreen).toDrawable()
+            }
         }
 
         object : CountDownTimer (timeRemaining!!,1000){

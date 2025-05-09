@@ -117,7 +117,7 @@ class QuizActivity : AppCompatActivity() {
                 else->50 * 60000
             }
             var questionList= QuestionList()
-            questionList.questionList = questionList.createQuestions(questionNumber)
+            questionList.questionList = questionList.createQuestions(questionNumber,value)
             //Items to send to next activity
             val questionIntent = Intent(this,QuestionsActivity::class.java)
             questionIntent.putExtra("timeLimit",timeAmount)

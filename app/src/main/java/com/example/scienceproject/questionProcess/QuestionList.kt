@@ -39,18 +39,32 @@ class QuestionList :Serializable{
         Questions(30,3,"Question 10",1,"Answer 1","Answer 2","Answer 3","Answer 4",0,"Hint"),
 
         )
+
+
+    //Shuffles list
     fun shuffleList(): List<Questions> {
         return questionList.shuffled()
     }
-    fun getSubjectQuestions(questionSubject: Int):List<Questions> {
-        when(questionSubject){
-            1 or 2 or 3->{createSubList(questionSubject)}
-            else->{questionList=questionList}
+
+
+    //Checks if list is no random, then passes value to get list from certain subject
+    private fun getSubjectQuestions(questionSubject: Int?):List<Questions> {
+        questionList = when(questionSubject){
+            1 or 2 or 3->{
+                createSubList(questionSubject)
+            }
+
+            else->{
+                questionList
+            }
         }
         return questionList
     }
 
-    private fun createSubList(questionSubject: Int):List<Questions> {
+
+
+    //Creates List based on passed subject
+    private fun createSubList(questionSubject: Int?):List<Questions> {
         var subList = mutableListOf<Questions>()
         for (i in questionList){
             if (i.questionSubject==questionSubject){
@@ -59,7 +73,12 @@ class QuestionList :Serializable{
         }
         return subList
     }
-    fun createQuestions(numberOfQuestions: Int):List<Questions>{
+
+
+    //Creates a smaller list to be used by the programmed, the list is cut and shuffled and only specific subject is gathered
+    fun createQuestions(numberOfQuestions: Int,questionSubject: Int?):List<Questions>{
+        questionList= getSubjectQuestions(questionSubject)
+        questionList=questionList.shuffled()
         var smallerQuestionList = mutableListOf<Questions>()
         for (i in 0..<numberOfQuestions){
             smallerQuestionList.add(i,questionList[i])

@@ -1,6 +1,7 @@
 package com.example.scienceproject.questionProcess
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
@@ -11,17 +12,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.scienceproject.MainActivity
 import com.example.scienceproject.R
+import com.example.scienceproject.TestActivity
 import org.w3c.dom.Text
 
 class QuestionsActivity : AppCompatActivity() {
     //Data variables
     private var questionNumber:Int? =null
     private var maxQuestions:Int? = null
+    private var startTime:Long? = null
     private var timeRemaining:Long? = null
     private var subject:Int? = null
     private var score:Int? = null
-    private var answered:Boolean? = null
+    private var answered:Boolean? = true
     private var questionListCreator:QuestionList? = null
     private var questionList:List<Questions>? = null
     @SuppressLint("MissingInflatedId")
@@ -37,13 +41,33 @@ class QuestionsActivity : AppCompatActivity() {
         val extras = intent.extras;
         layoutOfQuestion(extras)
         timerCreation(extras)
+        var nextButton: TextView = findViewById<TextView>(R.id.nextButton)
+        nextButton.setOnClickListener{
+            if (answered == true){
+                if (questionNumber!! < maxQuestions!!.minus(1)) {
+                    val questionIntent = Intent(this, QuestionsActivity::class.java)
+                    questionIntent.putExtra("timeLimit", timeRemaining)
+                    questionIntent.putExtra("maxQuestions", maxQuestions)
+                    questionIntent.putExtra("questionNumber", questionNumber?.plus(1))
+                    questionIntent.putExtra("score", 0)
+                    questionIntent.putExtra("subject", subject)
+                    questionIntent.putExtra("questionList", questionListCreator)
+                    startActivity(questionIntent)
+                }
+                else{
+                    val questionIntent = Intent(this, MainActivity::class.java)
+                    startActivity(questionIntent)
+                }
+            }
+        }
     }
 
     private fun timerCreation(extras: Bundle?) {
         var timerText: TextView = findViewById<TextView>(R.id.timerLabel)
-        object : CountDownTimer (timeRemaining!!,1000){
+        object : CountDownTimer (startTime!!,1000){
             override fun onTick(millisUntilFinished: Long) {
                 timerText.text = ""+(millisUntilFinished / 1000)/60 +":"+(millisUntilFinished / 1000)%60
+                timeRemaining= timeRemaining?.minus(1000)
             }
 
             // Callback function, fired
@@ -74,6 +98,7 @@ class QuestionsActivity : AppCompatActivity() {
         if (extras != null) {
             questionNumber = extras.getInt("questionNumber")
             maxQuestions = extras.getInt("maxQuestions")
+            startTime = extras.getLong("timeLimit")
             timeRemaining = extras.getLong("timeLimit")
             subject = extras.getInt("subject")
             score = extras.getInt("score")
@@ -95,7 +120,7 @@ class QuestionsActivity : AppCompatActivity() {
             questionText.text=questionList?.get(questionNumber!!)?.question
             //--//
             //Sets text of next button
-            if (questionNumber!! < maxQuestions!!){
+            if (questionNumber!! < maxQuestions!!.minus(1)){
                 nextButton.text="Next"
             }
             else{

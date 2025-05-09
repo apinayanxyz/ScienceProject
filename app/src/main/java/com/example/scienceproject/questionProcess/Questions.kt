@@ -13,6 +13,7 @@ class Questions(id:Int,subject: Int,question:String,correctAnswer:Int,answer1:St
     var answer3 : String? = answer3
     var answer4 : String? = answer4
     var questionType : Int? = questionType
-    var questionHint : String = questionHint
+    var questionHint : String? = questionHint
+    var answered = "Not answered"
 
 }

@@ -52,12 +52,61 @@ class QuestionsActivity : AppCompatActivity() {
         val answerTwoButton: Button = findViewById<Button>(R.id.answerTwo)
         val answerFourButton: Button = findViewById<Button>(R.id.answerThree)
         val answerThreeButton: Button = findViewById<Button>(R.id.answerFour)
-
-        answerOneButton.setOnClickListener{
-            val fadeInButton=AnimationUtils.loadAnimation(this,R.anim.fade_in_next_button)
-            nextButton.startAnimation(fadeInButton)
-            nextButton.visibility = View.VISIBLE
+        answerOneButton.setOnClickListener {
+            if (answered==false) {
+                fadeInButton()
+                showCorrectAnswer()
+                if (questionList?.get(questionNumber!!)?.correctAnswer == 1) {
+                    questionList?.get(questionNumber!!)?.answered = "Correct"
+                    score= score?.plus(10)
+                } else {
+                    questionList?.get(questionNumber!!)?.answered = "Incorrect"
+                    answerOneButton.setBackgroundColor(resources.getColor(R.color.wrongRed))
+                }
+                answered = true
+            }
+        }
+        answerTwoButton.setOnClickListener {
+            if (answered==false) {
+                fadeInButton()
+                showCorrectAnswer()
+                if (questionList?.get(questionNumber!!)?.correctAnswer == 2) {
+                    questionList?.get(questionNumber!!)?.answered = "Correct"
+                    score= score?.plus(10)
+                } else {
+                    questionList?.get(questionNumber!!)?.answered = "Incorrect"
+                    answerTwoButton.setBackgroundColor(resources.getColor(R.color.wrongRed))
+                }
+                answered = true
+            }
+        }
+        answerThreeButton.setOnClickListener {
+            if (answered==false) {
+                fadeInButton()
+                showCorrectAnswer()
+                if (questionList?.get(questionNumber!!)?.correctAnswer == 3) {
+                    questionList?.get(questionNumber!!)?.answered = "Correct"
+                    score= score?.plus(10)
+                } else {
+                    questionList?.get(questionNumber!!)?.answered = "Incorrect"
+                    answerThreeButton.setBackgroundColor(resources.getColor(R.color.wrongRed))
+                }
+                answered = true
+            }
+        }
+        answerFourButton.setOnClickListener {
+            if (answered==false){
+                fadeInButton()
+                showCorrectAnswer()
+            if (questionList?.get(questionNumber!!)?.correctAnswer == 4) {
+                questionList?.get(questionNumber!!)?.answered = "Correct"
+                score= score?.plus(10)
+            } else {
+                questionList?.get(questionNumber!!)?.answered = "Incorrect"
+                answerFourButton.setBackgroundColor(resources.getColor(R.color.wrongRed))
+            }
             answered = true
+                }
         }
 
 
@@ -85,6 +134,39 @@ class QuestionsActivity : AppCompatActivity() {
                 nextButton.visibility = View.VISIBLE
             }
         }
+    }
+public override fun onBackPressed(){
+    return;
+    super.onBackPressed()
+
+}
+    private fun showCorrectAnswer() {
+        val answerOneButton: Button = findViewById<Button>(R.id.answerOne)
+        val answerTwoButton: Button = findViewById<Button>(R.id.answerTwo)
+        val answerFourButton: Button = findViewById<Button>(R.id.answerThree)
+        val answerThreeButton: Button = findViewById<Button>(R.id.answerFour)
+        when (questionList?.get(questionNumber!!)?.correctAnswer) {
+            1 -> {
+                answerOneButton.setBackgroundColor(resources.getColor(R.color.correctGreen))
+            }
+            2 -> {
+                answerTwoButton.setBackgroundColor(resources.getColor(R.color.correctGreen))
+            }
+            3 -> {
+                answerThreeButton.setBackgroundColor(resources.getColor(R.color.correctGreen))
+            }
+            4 -> {
+                answerFourButton.setBackgroundColor(resources.getColor(R.color.correctGreen))
+            }
+        }
+
+    }
+
+    private fun fadeInButton() {
+        var nextButton: TextView = findViewById<TextView>(R.id.nextButton)
+        val fadeInButton=AnimationUtils.loadAnimation(this,R.anim.fade_in_next_button)
+        nextButton.startAnimation(fadeInButton)
+        nextButton.visibility = View.VISIBLE
     }
 
     private fun timerCreation(extras: Bundle?) {

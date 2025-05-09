@@ -8,6 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="baseGreen">#98FB98</color>
+
+    <color name="wrongRed">#ff3333</color>
+    <color name="correctGreen">#34b233 </color>
+
     <color name="physicsColor">#000080</color>
     <color name="biologyColor">#4a6741</color>
     <color name="chemistryGreen">#99f859</color>

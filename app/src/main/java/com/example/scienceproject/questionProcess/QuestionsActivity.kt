@@ -4,6 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.View
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -25,7 +29,7 @@ class QuestionsActivity : AppCompatActivity() {
     private var timeRemaining:Long? = null
     private var subject:Int? = null
     private var score:Int? = null
-    private var answered:Boolean? = true
+    private var answered:Boolean? = false
     private var questionListCreator:QuestionList? = null
     private var questionList:List<Questions>? = null
     @SuppressLint("MissingInflatedId")
@@ -41,7 +45,24 @@ class QuestionsActivity : AppCompatActivity() {
         val extras = intent.extras;
         layoutOfQuestion(extras)
         timerCreation(extras)
+
         var nextButton: TextView = findViewById<TextView>(R.id.nextButton)
+        nextButton.visibility = View.INVISIBLE
+        val answerOneButton: Button = findViewById<Button>(R.id.answerOne)
+        val answerTwoButton: Button = findViewById<Button>(R.id.answerTwo)
+        val answerFourButton: Button = findViewById<Button>(R.id.answerThree)
+        val answerThreeButton: Button = findViewById<Button>(R.id.answerFour)
+
+        answerOneButton.setOnClickListener{
+            val fadeInButton=AnimationUtils.loadAnimation(this,R.anim.fade_in_next_button)
+            nextButton.startAnimation(fadeInButton)
+            nextButton.visibility = View.VISIBLE
+            answered = true
+        }
+
+
+
+
         nextButton.setOnClickListener{
             if (answered == true){
                 if (questionNumber!! < maxQuestions!!.minus(1)) {
@@ -58,6 +79,10 @@ class QuestionsActivity : AppCompatActivity() {
                     val questionIntent = Intent(this, MainActivity::class.java)
                     startActivity(questionIntent)
                 }
+            }
+            else{
+                answered = true
+                nextButton.visibility = View.VISIBLE
             }
         }
     }

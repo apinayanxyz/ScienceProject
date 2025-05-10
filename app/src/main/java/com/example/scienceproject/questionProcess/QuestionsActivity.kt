@@ -128,6 +128,7 @@ class QuestionsActivity : AppCompatActivity() {
                     val scoreIntent = Intent(this, FinalScore::class.java)
                     scoreIntent.putExtra("score", score)
                     scoreIntent.putExtra("subject", subject)
+                    scoreIntent.putExtra("maxQuestions", maxQuestions)
                     scoreIntent.putExtra("questionList", questionListCreator)
                     startActivity(scoreIntent)
                 }

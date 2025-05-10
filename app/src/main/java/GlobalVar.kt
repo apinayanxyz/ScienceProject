@@ -1,11 +1,10 @@
+import com.google.android.material.color.utilities.Score
 import kotlin.properties.Delegates
 
 public class GlobalVar {
-    public var score:Int?=0
-    public var questionsAnswered:Int?=0
     companion object{
-        public var score by Delegates.notNull<Int>()
-        public var questionsAnswered by Delegates.notNull<Int>()
+        public var score : Int = 0
+        public var questionsAnswered :Int = 0
     }
     init {
         if (score==null){

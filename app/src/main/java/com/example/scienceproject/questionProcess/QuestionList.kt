@@ -50,7 +50,13 @@ class QuestionList :Serializable{
     //Checks if list is no random, then passes value to get list from certain subject
     private fun getSubjectQuestions(questionSubject: Int?):List<Questions> {
         questionList = when(questionSubject){
-            1 or 2 or 3->{
+            1->{
+                createSubList(questionSubject)
+            }
+            2->{
+                createSubList(questionSubject)
+            }
+            3->{
                 createSubList(questionSubject)
             }
 

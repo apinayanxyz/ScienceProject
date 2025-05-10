@@ -70,12 +70,8 @@ class TestActivity : AppCompatActivity() {
             var timeAmount:Long? =null
             println(timePosition)
             timeAmount =when(timePosition){
-                0->5 * 60000
-                1->10 * 60000
-                2->15 * 60000
-                3->20 * 60000
-                4->30 * 60000
-                5->45 * 60000
+                0->30 * 60000
+                1->45 * 60000
                 else->50 * 60000
             }
             var questionList= QuestionList()
@@ -96,7 +92,7 @@ class TestActivity : AppCompatActivity() {
         val timeSpinner = findViewById<Spinner>(R.id.testTimeSpinner)
         ArrayAdapter.createFromResource(
             this,
-            R.array.time_array,
+            R.array.test_time_array,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

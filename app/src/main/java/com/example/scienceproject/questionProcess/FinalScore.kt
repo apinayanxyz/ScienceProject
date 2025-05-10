@@ -43,8 +43,9 @@ class FinalScore : AppCompatActivity() {
         if (GlobalVar.score==null){
             GlobalVar.score = 0
         }
-
-
+        if (GlobalVar.questionsAnswered==null){
+            GlobalVar.questionsAnswered = 0
+        }
         for(i in questionList!!){
             if (i.answered=="Correct"){
                 correctQuestions = correctQuestions!! + 1
@@ -53,6 +54,7 @@ class FinalScore : AppCompatActivity() {
         if (correctQuestions==maxQuestions){
             score= score?.plus((score!! /4))
         }
+        GlobalVar.questionsAnswered=GlobalVar.questionsAnswered.plus(correctQuestions!!)
 
         //Background
         var backgroundLayout=findViewById<FrameLayout>(R.id.backgroundBorder)
@@ -92,5 +94,10 @@ class FinalScore : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+    public override fun onBackPressed(){
+        return;
+        super.onBackPressed()
+
     }
 }

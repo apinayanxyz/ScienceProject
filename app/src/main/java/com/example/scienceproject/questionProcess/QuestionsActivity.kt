@@ -119,14 +119,17 @@ class QuestionsActivity : AppCompatActivity() {
                     questionIntent.putExtra("timeLimit", timeRemaining)
                     questionIntent.putExtra("maxQuestions", maxQuestions)
                     questionIntent.putExtra("questionNumber", questionNumber?.plus(1))
-                    questionIntent.putExtra("score", 0)
+                    questionIntent.putExtra("score", score)
                     questionIntent.putExtra("subject", subject)
                     questionIntent.putExtra("questionList", questionListCreator)
                     startActivity(questionIntent)
                 }
                 else{
-                    val questionIntent = Intent(this, MainActivity::class.java)
-                    startActivity(questionIntent)
+                    val scoreIntent = Intent(this, FinalScore::class.java)
+                    scoreIntent.putExtra("score", score)
+                    scoreIntent.putExtra("subject", subject)
+                    scoreIntent.putExtra("questionList", questionListCreator)
+                    startActivity(scoreIntent)
                 }
             }
             else{

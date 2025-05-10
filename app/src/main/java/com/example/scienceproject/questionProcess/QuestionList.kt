@@ -6,6 +6,7 @@ class QuestionList :Serializable{
         /*Question Type
         * 0 is multiple choice
         * */
+    //temporary questions
         var questionList = listOf(
         Questions(1,1,"Question 1",1,"Answer 1","Answer 2","Answer 3","Answer 4",0,"Hint"),
         Questions(2,1,"Question 2",1,"Answer 1","Answer 2","Answer 3","Answer 4",0,"Hint"),

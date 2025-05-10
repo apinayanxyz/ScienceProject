@@ -126,6 +126,7 @@ class QuestionsActivity : AppCompatActivity() {
                 }
                 else{
                     val scoreIntent = Intent(this, FinalScore::class.java)
+                    scoreIntent.putExtra("timeRemaining", timeRemaining)
                     scoreIntent.putExtra("score", score)
                     scoreIntent.putExtra("subject", subject)
                     scoreIntent.putExtra("maxQuestions", maxQuestions)
@@ -177,14 +178,28 @@ public override fun onBackPressed(){
         var timerText: TextView = findViewById<TextView>(R.id.timerLabel)
         object : CountDownTimer (startTime!!,1000){
             override fun onTick(millisUntilFinished: Long) {
-                timerText.text = ""+(millisUntilFinished / 1000)/60 +":"+(millisUntilFinished / 1000)%60
-                timeRemaining= timeRemaining?.minus(1000)
+                if ((millisUntilFinished / 1000)%60>10) {
+                    timerText.text =
+                        "" + (millisUntilFinished / 1000) / 60 + ":" + (millisUntilFinished / 1000) % 60
+                }
+                else{
+
+                    timerText.text =
+                        "" + (millisUntilFinished / 1000) / 60 + ":0" + (millisUntilFinished / 1000) % 60
+                }
+                timeRemaining = timeRemaining?.minus(1000)
             }
 
             // Callback function, fired
             // when the time is up
             override fun onFinish() {
-                timerText.text = "done!"
+                val scoreIntent = Intent(applicationContext, FinalScore::class.java)
+                scoreIntent.putExtra("timeRemaining", timeRemaining)
+                scoreIntent.putExtra("score", score)
+                scoreIntent.putExtra("subject", subject)
+                scoreIntent.putExtra("maxQuestions", maxQuestions)
+                scoreIntent.putExtra("questionList", questionListCreator)
+                startActivity(scoreIntent)
             }
         }.start()
     }

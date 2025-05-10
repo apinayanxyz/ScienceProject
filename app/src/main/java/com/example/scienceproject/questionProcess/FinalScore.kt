@@ -43,6 +43,12 @@ class FinalScore : AppCompatActivity() {
         if (GlobalVar.score==null){
             GlobalVar.score = 0
         }
+        //Total score text
+        GlobalVar.score= GlobalVar.score.plus(score!!)
+        var totalScoreText = findViewById<TextView>(R.id.totalScoreText)
+        totalScoreText.text="Total score is"+GlobalVar.score
+
+
         for(i in questionList!!){
             if (i.answered=="Correct"){
                 correctQuestions = correctQuestions!! + 1
@@ -53,7 +59,7 @@ class FinalScore : AppCompatActivity() {
         }
 
         //Background
-        var backgroundLayout=findViewById<FrameLayout>(R.id.backgroundLayout)
+        var backgroundLayout=findViewById<FrameLayout>(R.id.backgroundBorder)
         backgroundLayout.background = when (subject){
             1-> resources.getColor(R.color.physicsColor).toDrawable()
             2->resources.getColor(R.color.biologyColor).toDrawable()
@@ -63,17 +69,13 @@ class FinalScore : AppCompatActivity() {
         //Score Text
         var scoreText = findViewById<TextView>(R.id.finalScoreText)
         scoreText.text= "You've gotten$score"
-        //Total score text
-        GlobalVar.score= GlobalVar.score.plus(score!!)
-        var totalScoreText = findViewById<TextView>(R.id.totalScoreText)
-        totalScoreText.text="Total score is"+GlobalVar.score
         //Questions answered text
         var questionText = findViewById<TextView>(R.id.amountOfQuestionsAnsweredText)
         questionText.text= "You've gotten$correctQuestions out of $maxQuestions"
         //Timer Text
         var timerText = findViewById<TextView>(R.id.amountOTimeLeftText)
         if ((timeRemaining?.div(1000))!! %60>10) {
-            questionText.text =
+            timerText.text =
                 "You had " + (timeRemaining!! / 1000) / 60 + ":" + (timeRemaining!! / 1000) % 60 +" left"
         }
         else {

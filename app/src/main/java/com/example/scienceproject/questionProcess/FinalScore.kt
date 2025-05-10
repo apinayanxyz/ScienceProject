@@ -43,10 +43,6 @@ class FinalScore : AppCompatActivity() {
         if (GlobalVar.score==null){
             GlobalVar.score = 0
         }
-        //Total score text
-        GlobalVar.score= GlobalVar.score.plus(score!!)
-        var totalScoreText = findViewById<TextView>(R.id.totalScoreText)
-        totalScoreText.text="Total score is"+GlobalVar.score
 
 
         for(i in questionList!!){
@@ -68,10 +64,14 @@ class FinalScore : AppCompatActivity() {
         }
         //Score Text
         var scoreText = findViewById<TextView>(R.id.finalScoreText)
-        scoreText.text= "You've gotten$score"
+        scoreText.text= "You've gotten $score"
+        //Total score text
+        GlobalVar.score= GlobalVar.score.plus(score!!)
+        var totalScoreText = findViewById<TextView>(R.id.totalScoreText)
+        totalScoreText.text="Total score is  "+GlobalVar.score
         //Questions answered text
         var questionText = findViewById<TextView>(R.id.amountOfQuestionsAnsweredText)
-        questionText.text= "You've gotten$correctQuestions out of $maxQuestions"
+        questionText.text= "You've gotten $correctQuestions out of $maxQuestions"
         //Timer Text
         var timerText = findViewById<TextView>(R.id.amountOTimeLeftText)
         if ((timeRemaining?.div(1000))!! %60>10) {
@@ -81,9 +81,6 @@ class FinalScore : AppCompatActivity() {
         else {
             timerText.text =
                 "You had " + (timeRemaining!! / 1000) / 60 + ":" + (timeRemaining!! / 1000) % 60 +" left"
-        }
-        if (subject==4){
-
         }
         var homeButton = findViewById<Button>(R.id.homeButton)
         homeButton.setOnClickListener{

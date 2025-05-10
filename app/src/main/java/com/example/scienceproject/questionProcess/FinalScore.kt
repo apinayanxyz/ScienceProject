@@ -60,7 +60,7 @@ class FinalScore : AppCompatActivity() {
             1-> resources.getColor(R.color.physicsColor).toDrawable()
             2->resources.getColor(R.color.biologyColor).toDrawable()
             3->resources.getColor(R.color.chemistryGreen).toDrawable()
-            else->resources.getColor(R.color.biologyColor).toDrawable()
+            else->resources.getColor(R.color.all).toDrawable()
         }
         //Score Text
         var scoreText = findViewById<TextView>(R.id.finalScoreText)

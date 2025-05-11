@@ -46,7 +46,7 @@ class TestActivity : AppCompatActivity() {
         val timeSpinner = findViewById<Spinner>(R.id.testTimeSpinner)
         if (timeSpinner != null){
             val adapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_item,resources.getStringArray(R.array.time_array))
+                android.R.layout.simple_spinner_item,resources.getStringArray(R.array.test_time_array))
             timeSpinner.adapter = adapter
 
             timeSpinner.onItemSelectedListener = object :

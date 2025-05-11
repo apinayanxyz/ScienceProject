@@ -28,10 +28,8 @@ class ScoreFragment : Fragment() {
         _binding = FragmentScoreBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        scoreViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        val totalScoreTextView: TextView = binding.yourTotalScore
+        totalScoreTextView.text= GlobalVar.score.toString()
         return root
     }
 

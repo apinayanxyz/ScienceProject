@@ -204,6 +204,7 @@ public override fun onBackPressed(){
         }.start()
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun layoutOfQuestion(extras:Bundle?){
         //Buttons for answering
         val answerOneButton: Button = findViewById<Button>(R.id.answerOne)
